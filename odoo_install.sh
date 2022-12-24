@@ -372,7 +372,10 @@ fi
 #--------------------------------------------------
 
 if [ $INSTALL_NGINX = "True" ] && [ $ENABLE_SSL = "True" ] && [ $ADMIN_EMAIL != "odoo@example.com" ]  && [ $WEBSITE_NAME != "_" ];then
-  sudo add-apt-repository ppa:certbot/certbot -y && sudo apt-get update -y
+  # sudo add-apt-repository ppa:certbot/certbot -y && sudo apt-get update -y
+  # the above ppa certbot repository is no longer valid
+  
+  sudo apt-get update -y
   sudo apt-get install python3-certbot-nginx -y
   sudo certbot --nginx -d $WEBSITE_NAME --noninteractive --agree-tos --email $ADMIN_EMAIL --redirect
   sudo service nginx reload
